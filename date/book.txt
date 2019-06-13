@@ -1,0 +1,16 @@
+exec add_book_message 'BK10000', 31.00, 44.00, '概率论', '科学出版社', 5 
+exec add_book_message 'BK10001', 37.00, 50.00, '算法导论', '北京出版社', 5 
+exec add_book_message 'BK10002', 24.00, 37.00, '数据库开发与应用', '人民邮电出版社', 5 
+exec add_book_message 'BK10003', 30.00, 43.00, 'java程序设计教程', '高等教育出版社', 5 
+exec add_book_message 'BK10004', 49.00, 62.00, '数据库系统概论', '清华大学出版社', 5 
+exec add_book_message 'BK10005', 24.00, 37.00, '算法与数据结构', '中国人民大学出版社', 5 
+exec add_book_message 'BK10006', 38.00, 51.00, '离散数学', '科学出版社', 5 
+exec add_book_message 'BK10007', 38.00, 51.00, '概率论', '北京出版社', 5 
+exec add_book_message 'BK10008', 42.00, 55.00, '算法导论', '人民邮电出版社', 5 
+exec add_book_message 'BK10009', 34.00, 47.00, '数据库开发与应用', '高等教育出版社', 5 
+exec add_book_message 'BK10010', 25.00, 38.00, 'java程序设计教程', '清华大学出版社', 5 
+exec add_book_message 'BK10011', 25.00, 38.00, '数据库系统概论', '中国人民大学出版社', 5 
+exec add_book_message 'BK10012', 21.00, 34.00, '算法与数据结构', '科学出版社', 5 
+exec add_book_message 'BK10013', 47.00, 60.00, '离散数学', '北京出版社', 5 
+exec add_book_message 'BK10014', 21.00, 34.00, '概率论', '人民邮电出版社', 5 
+exec add_book_message 'BK10015', 31.00, 44.00, '算法导论', '高等教育出版社', 5 

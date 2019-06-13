@@ -1,0 +1,6 @@
+exec add_supplier_message 'GY10001', '人民邮电出版社', '北京','18010411467'
+exec add_supplier_message 'GY10002', '高等教育出版社', '上海','18013341500'
+exec add_supplier_message 'GY10003', '清华大学出版社', '广州','18011691724'
+exec add_supplier_message 'GY10004', '中国人民大学出版社', '北京','18014781358'
+exec add_supplier_message 'GY10005', '科学出版社', '深圳','18019621464'
+exec add_supplier_message 'GY10006', '北京出版社', '北京','18017051145'
