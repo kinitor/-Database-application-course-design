@@ -1,0 +1,56 @@
+package Sql_linked;
+
+import java.sql.*;
+
+public class ConnectToSQL
+{
+    public static void main(String args[])
+    {
+// TODO Auto-generated method stub
+        String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+        ///上面两句驱动语句，在
+        try
+        {
+            Class.forName(jdbcDriver);//加载数据库驱动
+        }
+        catch(ClassNotFoundException e)
+        {
+            e.printStackTrace();
+            System.out.println("加载数据库引擎失败");
+            System.exit(0);
+        }
+        System.out.println("数据库驱动成功");
+        try
+        {
+            String user="sa";//数据库用户名
+            String password="123456";//数据库密码
+            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+            System.out.println("连接数据库成功");
+            Statement statement=connection.createStatement();//创建一个Statement对象
+            ResultSet resultset=statement.executeQuery("SELECT *FROM customer");//执行查询语句
+
+            System.out.println("ID\tVIP\tVIPMONEY\tel");
+
+            while(resultset.next()) //遍历结果集，输出每一条记录 getString getInt getFloat
+            {
+
+                System.out.println(resultset.getString("Customer_id")+"\t"+resultset.getString("Customer_vip")+"\t"+resultset.getString("Customer_vip_money")+"\t"+resultset.getString("Customer_tel"));
+            }
+            System.out.println("读取完毕");
+            statement.close();//关闭命令对象连接
+            connection.close();//关闭数据库连接
+        }
+        catch(SQLException e)
+        {
+
+            e.printStackTrace();
+            System.out.println("数据库连接错误");
+            System.exit(0);
+
+        }
+
+    }
+
+
+}
