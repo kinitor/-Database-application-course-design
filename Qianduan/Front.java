@@ -1,4 +1,5 @@
-package keshe;
+package Frame;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,31 +13,19 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Front {
+public class Front  {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Front window = new Front();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
 	public Front() {
+		
 		initialize();
+		frame.setVisible(true);
+	//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**
@@ -89,5 +78,7 @@ public class Front {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(176, 38, 444, 90);
 		frame.getContentPane().add(lblNewLabel);
+		
+		
 	}
 }
