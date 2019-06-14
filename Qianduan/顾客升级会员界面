@@ -1,0 +1,97 @@
+package One;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Component;
+import java.awt.Dimension;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JTextArea;
+
+public class Gengxin {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gengxin window = new Gengxin();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Gengxin() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setTitle("\u4F1A\u5458\u6CE8\u518C");//表名：会员注册
+		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.setBounds(100, 100, 706, 509);//创建会员窗口
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel label = new JLabel("\u4F1A\u5458\u6CE8\u518C");//注册标题
+		label.setFont(new Font("宋体", Font.PLAIN, 32));//标题字体大小
+		label.setHorizontalAlignment(SwingConstants.CENTER);//居中
+		label.setAlignmentX(Component.RIGHT_ALIGNMENT);//垂直对齐
+		label.setBounds(50, 13, 573, 56);//标题再窗口中的位置
+		frame.getContentPane().add(label);//添加进窗口
+		
+		textField = new JTextField();//顾客号输入文本框
+		textField.setFont(new Font("宋体", Font.PLAIN, 22));
+		textField.setBackground(Color.WHITE);//文本框背景颜色
+		textField.setBounds(163, 100, 237, 38);//文本框在窗口中的位置
+		frame.getContentPane().add(textField);//文本框添加进窗口
+		textField.setColumns(10);//文本框列宽
+		
+		JLabel label_1 = new JLabel("\u987E\u5BA2\u53F7\uFF1A");//顾客号标题
+		label_1.setBackground(Color.WHITE);//顾客号背景颜色
+		label_1.setFont(new Font("宋体", Font.PLAIN, 22));//字体大小
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(64, 100, 98, 38);
+		frame.getContentPane().add(label_1);//添加顾客号标题进窗口
+		
+		JButton btnNewButton = new JButton("\u5347\u7EA7");//升级键按钮
+		btnNewButton.setBackground(Color.BLUE);
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 27));
+		btnNewButton.setBounds(414, 100, 98, 38);
+		frame.getContentPane().add(btnNewButton);
+		
+		JTextArea textArea = new JTextArea();//显示会员号升级结果的文本区
+		textArea.setEditable(false);
+		textArea.setBackground(Color.GRAY);
+		textArea.setDisabledTextColor(Color.BLACK);
+		textArea.setBounds(163, 223, 333, 121);
+		frame.getContentPane().add(textArea);
+		
+		JLabel label_2 = new JLabel("\u7ED3\u679C\u660E\u793A");//显示结果的标题
+		label_2.setBackground(Color.WHITE);
+		label_2.setFont(new Font("宋体", Font.PLAIN, 21));
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(272, 182, 107, 38);
+		frame.getContentPane().add(label_2);
+	}
+}
