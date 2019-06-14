@@ -1,0 +1,134 @@
+package Frame;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class Jtable_query extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTable table;
+	private JScrollPane scrollPane;
+	private JTable table_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Jtable_query frame = new Jtable_query();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Jtable_query() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 688, 464);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(199, 33, 91, 49);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("\u987E\u5BA2");
+		lblNewLabel.setBackground(Color.MAGENTA);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 31));
+		lblNewLabel.setBounds(42, 27, 96, 49);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Choose");
+		///***
+	
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+		        ///上面两句驱动语句，在
+		        try
+		        {
+		            Class.forName(jdbcDriver);//加载数据库驱动
+		            String user="sa";//数据库用户名
+		            String password="123456";//数据库密码
+		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+		           
+		            Statement statement=connection.createStatement();//创建一个Statement对象
+		           
+		            ResultSet rs=statement.executeQuery("SELECT * FROM customer");//执行查询语句
+		             int count = 0;
+		            while(rs.next()) {
+		            	count++;
+		            }
+		          //  
+		             rs = statement.executeQuery("SELECT * FROM customer");
+		            Object[][] infomation = new Object[count][4];
+		            count = 0;
+		            while(rs.next())
+		            {
+		            	
+		            	   infomation[count][0] = String.valueOf(rs.getString("Customer_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Customer_vip"));
+		                   infomation[count][2] = String.valueOf(rs.getString("Customer_vip_money"));
+		                   infomation[count][3] = String.valueOf(rs.getString("Customer_tel"));
+		            	// System.out.println(rs.getString("Customer_id")+"\t"+rs.getString("Customer_vip")+"\t"+rs.getString("Customer_vip_money")+"\t"+rs.getString("Customer_tel"));
+		            count++;
+		            //System.out.println(count);	
+		            }
+		            String[] title = {"顾客号","是否会员","会员卡金额","联系电话"};
+		            table = new JTable(infomation,title);
+		            table.setBounds(41, 122, 843, 372);
+		            scrollPane.setViewportView(table);///加表格
+		        }
+		        catch(Exception e1)
+		        {
+		        	
+		        }
+			}
+		});
+		btnNewButton.setBounds(348, 23, 131, 55);
+		contentPane.add(btnNewButton);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(59, 114, 486, 243);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		
+		
+		
+	}
+}
