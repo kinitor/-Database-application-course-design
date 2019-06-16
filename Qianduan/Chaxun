@@ -125,6 +125,19 @@ public class Chaxun extends JFrame {
 		JButton button_3 = new JButton("\u652F\u4ED8\u4FE1\u606F");
 		button_3.setBounds(542, 5, 93, 27);
 		panel.add(button_3);
+		
+		JButton button_9 = new JButton("\u8FD4\u56DE");
+		button_9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new Front();
+				setVisible(false);
+			}
+		});
+		button_9.setFont(new Font("宋体", Font.BOLD, 20));
+		button_9.setBounds(474, 116, 113, 27);
+		contentPane.add(button_9);
+
 
 		panel_1.setVisible(true);
 
@@ -148,15 +161,24 @@ public class Chaxun extends JFrame {
 		            String user="sa";//数据库用户名
 		            String password="123456";//数据库密码
 		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
-		            Statement statement=connection.createStatement();//创建一个Statement对象
-		            if()
-		            ResultSet rs=statement.executeQuery("SELECT * FROM Book");//执行查询语句
-		             int count = 0;
-		            while(rs.next()) {
-		            	count++;
-		            }
-		           
-		             rs = statement.executeQuery("SELECT * FROM Book");
+		               int count = 0;
+		               Statement statement=connection.createStatement();//创建一个Statement对象 
+		               ResultSet rs;
+		               if(textField.getText().equals(""))
+			            {		            	
+			             rs =statement.executeQuery("SELECT * FROM Book");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			             rs = statement.executeQuery("SELECT * FROM Book");
+			            }
+		               else {
+		            	   rs =statement.executeQuery("SELECT * FROM Book where Book_id = '"+textField.getText()+"'");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			                rs =statement.executeQuery("SELECT * FROM Book where Book_id = '"+textField.getText()+"'");//执行查询语句
+		               }
 		            Object[][] infomation = new Object[count][7];
 		            count = 0;
 		            while(rs.next())
@@ -189,7 +211,7 @@ public class Chaxun extends JFrame {
 		panel_1.add(button);
 		panel_3.add(panel_2);
 		
-		JButton button_4 = new JButton("\u67E5\u8BE2");//查询顾客号
+		JButton button_4 = new JButton("\u67E5\u8BE2"); //查询顾客号
 		button_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -202,16 +224,24 @@ public class Chaxun extends JFrame {
 		            String user="sa";//数据库用户名
 		            String password="123456";//数据库密码
 		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
-		           
-		            Statement statement=connection.createStatement();//创建一个Statement对象
-		           
-		            ResultSet rs=statement.executeQuery("SELECT * FROM customer");//执行查询语句
-		             int count = 0;
-		            while(rs.next()) {
-		            	count++;
-		            }
-		          //  
-		             rs = statement.executeQuery("SELECT * FROM customer");
+		            int count = 0;
+		              Statement statement=connection.createStatement();//创建一个Statement对象 
+		            ResultSet rs;
+		               if(textField_1.getText().equals(""))
+			            {		            	
+			             rs =statement.executeQuery("SELECT * FROM Customer");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			             rs = statement.executeQuery("SELECT * FROM Customer");
+			            }
+		               else {
+		            	   rs =statement.executeQuery("SELECT * FROM Customer where Customer_id = '"+textField_1.getText()+"'");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			                rs =statement.executeQuery("SELECT * FROM Customer where Customer_id = '"+textField_1.getText()+"'");//执行查询语句
+		               }
 		            Object[][] infomation = new Object[count][4];
 		            count = 0;
 		            while(rs.next())
@@ -254,24 +284,37 @@ public class Chaxun extends JFrame {
 		            String user="sa";//数据库用户名
 		            String password="123456";//数据库密码
 		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
-		            Statement statement=connection.createStatement();//创建一个Statement对象
-		            ResultSet rs=statement.executeQuery("SELECT * FROM Sell_record");//执行查询语句
-		             int count = 0;
-		            while(rs.next()) {
-		            	count++;
-		            }
-		          //  
-		             rs = statement.executeQuery("SELECT * FROM Sell_record");
-		            Object[][] infomation = new Object[count][2];
+		            int count = 0;
+		              Statement statement=connection.createStatement();//创建一个Statement对象 
+		            ResultSet rs;
+		               if(textField_2.getText().equals(""))
+			            {		            	
+			             rs =statement.executeQuery("SELECT * FROM Orderform");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			             rs = statement.executeQuery("SELECT * FROM Orderform");
+			            }
+		               else {
+		            	   rs =statement.executeQuery("SELECT * FROM Orderform where Orderform_id = '"+textField_2.getText()+"'");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			                rs =statement.executeQuery("SELECT * FROM Orderform where Orderform_id = '"+textField_2.getText()+"'");//执行查询语句
+		               }
+		            Object[][] infomation = new Object[count][5];
 		            count = 0;
 		            while(rs.next())
 		            {
 		            
 		            	   infomation[count][0] = String.valueOf(rs.getString("Orderform_id"));
-		            	   infomation[count][1] = String.valueOf(rs.getString("Book_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Orderform_time"));
+		            	   infomation[count][2] = String.valueOf(rs.getString("Customer_id"));
+		            	   infomation[count][3] = String.valueOf(rs.getString("Supplier_id"));
+		            	   infomation[count][4] = String.valueOf(rs.getString("Supplier_total"));
 		            	count++;
 		            }
-		            String[] title = {"订单号","图书号"};
+		            String[] title = {"订单号","订单时间","顾客编号","供应商编号","供应量"};
 		            table = new JTable(infomation,title);
 		            table.setBounds(41, 122, 843, 372);
 		            scrollPane.setViewportView(table);///加表格
@@ -301,14 +344,24 @@ public class Chaxun extends JFrame {
 		            String user="sa";//数据库用户名
 		            String password="123456";//数据库密码
 		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
-		            Statement statement=connection.createStatement();//创建一个Statement对象
-		            ResultSet rs=statement.executeQuery("SELECT * FROM Pay_message");//执行查询语句
-		             int count = 0;
-		            while(rs.next()) {
-		            	count++;
-		            }
-		          //  
-		             rs = statement.executeQuery("SELECT * FROM Pay_message");
+		            int count = 0;
+		              Statement statement=connection.createStatement();//创建一个Statement对象 
+		            ResultSet rs;
+		               if(textField_3.getText().equals(""))
+			            {		            	
+			             rs =statement.executeQuery("SELECT * FROM Pay_message");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			             rs = statement.executeQuery("SELECT * FROM Pay_message");
+			            }
+		               else {
+		            	   rs =statement.executeQuery("SELECT * FROM Pay_message where Orderform_id = '"+textField_3.getText()+"'");//执行查询语句
+			                while(rs.next()) {
+			                	count++;
+			                }
+			                rs =statement.executeQuery("SELECT * FROM Pay_message where Orderform_id = '"+textField_3.getText()+"'");//执行查询语句
+		               }
 		            Object[][] infomation = new Object[count][3];
 		            count = 0;
 		            while(rs.next())
