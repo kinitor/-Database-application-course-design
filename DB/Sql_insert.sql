@@ -1,94 +1,130 @@
-create procedure add_customer_message--Ìí¼ÓÓÃ»§ĞÅÏ¢´æ´¢¹ı³Ì
+create procedure add_customer_message--æ·»åŠ ç”¨æˆ·ä¿¡æ¯å­˜å‚¨è¿‡ç¨‹
     @Customer_id varchar(20) ,
-	@Customer_vip bit,--ÊÇ·ñ»áÔ±
-	@Customer_vip_money float,--»áÔ±¿¨½ğ¶î
-	@Customer_tel varchar(20) --¹Ë¿ÍÁªÏµµç»°
+	@Customer_vip bit,--æ˜¯å¦ä¼šå‘˜
+	@Customer_vip_money float,--ä¼šå‘˜å¡é‡‘é¢
+	@Customer_tel varchar(20) --é¡¾å®¢è”ç³»ç”µè¯
 as
 insert into Customer(Customer_id,Customer_vip,Customer_vip_money,Customer_tel)
 values (@Customer_id,@Customer_vip,@Customer_vip_money,@Customer_tel)
 
-
-DROP TABLE BOOK
-
-exec add_book_message 'BK10000', 31.00, 44.00, '¸ÅÂÊÂÛ', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10001', 37.00, 50.00, 'Ëã·¨µ¼ÂÛ', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10002', 24.00, 37.00, 'Êı¾İ¿â¿ª·¢ÓëÓ¦ÓÃ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10003', 30.00, 43.00, 'java³ÌĞòÉè¼Æ½Ì³Ì', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
-exec add_book_message 'BK10004', 49.00, 62.00, 'Êı¾İ¿âÏµÍ³¸ÅÂÛ', 'Çå»ª´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10005', 24.00, 37.00, 'Ëã·¨ÓëÊı¾İ½á¹¹', 'ÖĞ¹úÈËÃñ´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10006', 38.00, 51.00, 'ÀëÉ¢ÊıÑ§', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10007', 38.00, 51.00, '¸ÅÂÊÂÛ', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10008', 42.00, 55.00, 'Ëã·¨µ¼ÂÛ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10009', 34.00, 47.00, 'Êı¾İ¿â¿ª·¢ÓëÓ¦ÓÃ', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
-exec add_book_message 'BK10010', 25.00, 38.00, 'java³ÌĞòÉè¼Æ½Ì³Ì', 'Çå»ª´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10011', 25.00, 38.00, 'Êı¾İ¿âÏµÍ³¸ÅÂÛ', 'ÖĞ¹úÈËÃñ´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10012', 21.00, 34.00, 'Ëã·¨ÓëÊı¾İ½á¹¹', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10013', 47.00, 60.00, 'ÀëÉ¢ÊıÑ§', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10014', 21.00, 34.00, '¸ÅÂÊÂÛ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10015', 31.00, 44.00, 'Ëã·¨µ¼ÂÛ', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
- 
 
 --------------------------------------------------------------------------------
 
-create procedure add_customer_message--Ìí¼ÓÓÃ»§ĞÅÏ¢´æ´¢¹ı³Ì
+create procedure add_customer_message--æ·»åŠ ç”¨æˆ·ä¿¡æ¯å­˜å‚¨è¿‡ç¨‹
     @Customer_id varchar(20) ,
-	@Customer_vip bit,--ÊÇ·ñ»áÔ±
-	@Customer_vip_money float,--»áÔ±¿¨½ğ¶î
-	@Customer_tel varchar(20) --¹Ë¿ÍÁªÏµµç»°
+	@Customer_vip bit,--æ˜¯å¦ä¼šå‘˜
+	@Customer_vip_money float,--ä¼šå‘˜å¡é‡‘é¢
+	@Customer_tel varchar(20) --é¡¾å®¢è”ç³»ç”µè¯
 as
 insert into Customer(Customer_id,Customer_vip,Customer_vip_money,Customer_tel)
 values (@Customer_id,@Customer_vip,@Customer_vip_money,@Customer_tel)
 
+drop procedure add_book_message
+go
 create procedure add_book_message
-	@Book_id varchar(20), --Í¼ÊéºÅ
-	@Book_in_price float,--½ø¼Û
-	@Book_out_price float,--Í¼ÊéÊÛ¼Û
-	@Book_name varchar(20),--ÊéÃû
-	@Supplier_name varchar(20),--¹©Ó¦ÉÌÃû×Ö
-	@Book_stock int--¿â´æ
+	@Book_id varchar(20), --å›¾ä¹¦å·
+	@Book_in_price float,--è¿›ä»·
+	@Book_out_price float,--å›¾ä¹¦å”®ä»·
+	@Book_name varchar(20),--ä¹¦å
+	@Supplier_name varchar(20),--ä¾›åº”å•†åå­—
+	@Book_storage_time datetime,
+	@Book_stock int--åº“å­˜
 as
-insert into Book(Book_id,Book_in_price,Book_out_price,Book_name,Supplier_name,Book_stock)
-values (@Book_id, @Book_in_price, @Book_out_price, @Book_name, @Supplier_name, @Book_stock)
-
-
-exec add_book_message 'BK10000', 31.00, 44.00, '¸ÅÂÊÂÛ', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10001', 37.00, 50.00, 'Ëã·¨µ¼ÂÛ', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10002', 24.00, 37.00, 'Êı¾İ¿â¿ª·¢ÓëÓ¦ÓÃ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10003', 30.00, 43.00, 'java³ÌĞòÉè¼Æ½Ì³Ì', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
-exec add_book_message 'BK10004', 49.00, 62.00, 'Êı¾İ¿âÏµÍ³¸ÅÂÛ', 'Çå»ª´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10005', 24.00, 37.00, 'Ëã·¨ÓëÊı¾İ½á¹¹', 'ÖĞ¹úÈËÃñ´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10006', 38.00, 51.00, 'ÀëÉ¢ÊıÑ§', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10007', 38.00, 51.00, '¸ÅÂÊÂÛ', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10008', 42.00, 55.00, 'Ëã·¨µ¼ÂÛ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10009', 34.00, 47.00, 'Êı¾İ¿â¿ª·¢ÓëÓ¦ÓÃ', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
-exec add_book_message 'BK10010', 25.00, 38.00, 'java³ÌĞòÉè¼Æ½Ì³Ì', 'Çå»ª´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10011', 25.00, 38.00, 'Êı¾İ¿âÏµÍ³¸ÅÂÛ', 'ÖĞ¹úÈËÃñ´óÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10012', 21.00, 34.00, 'Ëã·¨ÓëÊı¾İ½á¹¹', '¿ÆÑ§³ö°æÉç', 5 
-exec add_book_message 'BK10013', 47.00, 60.00, 'ÀëÉ¢ÊıÑ§', '±±¾©³ö°æÉç', 5 
-exec add_book_message 'BK10014', 21.00, 34.00, '¸ÅÂÊÂÛ', 'ÈËÃñÓÊµç³ö°æÉç', 5 
-exec add_book_message 'BK10015', 31.00, 44.00, 'Ëã·¨µ¼ÂÛ', '¸ßµÈ½ÌÓı³ö°æÉç', 5 
-
-
+insert into Book(Book_id,Book_in_price,Book_out_price,Book_name,Supplier_name,Book_storage_time ,Book_stock)
+values (@Book_id, @Book_in_price, @Book_out_price, @Book_name, @Supplier_name, @Book_storage_time,@Book_stock)
 
 
 ------------------------------------------------------------------------------------------------
 drop proc add_supplier_message
 go 
 create procedure add_supplier_message
-	@Supplier_id varchar(20),--¹©Ó¦ÉÌºÅ
-	@Supplier_name varchar(20),--¹©Ó¦ÉÌÃû×Ö
-	@Supplier_city varchar(20),--¹©Ó¦ÉÌ³ÇÊĞ
-	@Supplier_tel varchar(20)--¹©Ó¦ÉÌµç»°
+	@Supplier_id varchar(20),--ä¾›åº”å•†å·
+	@Supplier_name varchar(20),--ä¾›åº”å•†åå­—
+	@Supplier_city varchar(20),--ä¾›åº”å•†åŸå¸‚
+	@Supplier_tel varchar(20)--ä¾›åº”å•†ç”µè¯
 as
 insert into supplier(Supplier_id, Supplier_name, Supplier_city, Supplier_tel)
 values (@Supplier_id, @Supplier_name, @Supplier_city, @Supplier_tel)
-exec add_supplier_message 'GY10001', 'ÈËÃñÓÊµç³ö°æÉç', '±±¾©','18010411467'
-exec add_supplier_message 'GY10002', '¸ßµÈ½ÌÓı³ö°æÉç', 'ÉÏº£','18013341500'
-exec add_supplier_message 'GY10003', 'Çå»ª´óÑ§³ö°æÉç', '¹ãÖİ','18011691724'
-exec add_supplier_message 'GY10004', 'ÖĞ¹úÈËÃñ´óÑ§³ö°æÉç', '±±¾©','18014781358'
-exec add_supplier_message 'GY10005', '¿ÆÑ§³ö°æÉç', 'ÉîÛÚ','18019621464'
-exec add_supplier_message 'GY10006', '±±¾©³ö°æÉç', '±±¾©','18017051145'
+/*
+exec add_supplier_message 'GY10001', 'äººæ°‘é‚®ç”µå‡ºç‰ˆç¤¾', 'åŒ—äº¬','18010411467'
+exec add_supplier_message 'GY10002', 'é«˜ç­‰æ•™è‚²å‡ºç‰ˆç¤¾', 'ä¸Šæµ·','18013341500'
+*/
+----------------------------------------------------------------------------------------------
+create procedure add_Orderform--è®¢å•è¡¨
+	@Orderform_id varchar(20),--è®¢å•ç¼–å·
+	@Orderform_time datetime,--è®¢å•æ—¶é—´
+	@Customer_id varchar(20),--é¡¾å®¢ç¼–å·
+	@Supplier_id varchar(20),--ä¾›åº”å•†ç¼–å·
+	@Supplier_total int--ä¾›åº”é‡
+as 
+	insert into Orderform values(@Orderform_id, @Orderform_time, @Customer_id, @Supplier_id, @Supplier_total)
+ ----------------------------------------------------------------------------------------------
+ create proc add_Order_detail--è®¢å•æ˜ç»†è¡¨
+	@Orderform_id varchar(20),--è®¢å•ç¼–å·
+	@Book_num int ,--å›¾ä¹¦æ•°é‡
+	@Book_id varchar(20),--å›¾ä¹¦å·
+	@Pay_total float--å°è®¡
+as
+	insert into Order_detail values(@Orderform_id, @Book_num, @Book_id, @Pay_total)
+ 
+ 
+ ---------------------------------------------------------------------------------------
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------
+/*
+æ·»åŠ è¿›è´§è®°å½•
+è¿™é‡Œæ›´æ–°è®¢å•æ˜ç»†
+æ›´æ–°åº“å­˜çš„ä¹¦
+*/
+-----------------------------------------------------------------
 
-
-select * from supplier
-select * from book
+create proc Supply_ExistentBook--ä¾›åº”å­˜åœ¨çš„ä¹¦å­˜å‚¨è¿‡ç¨‹
+    @Orderform_id varchar(20), --è®¢å•ç¼–å·
+	@Book_num int ,--å›¾ä¹¦æ•°é‡
+	@Book_id varchar(20)--å›¾ä¹¦å·
+	---Pay_total float--å°è®¡
+as
+	begin 
+		declare @Pay_total float, @Book_price float, @time datetime,@Supplier_id varchar(20)     --å°è®¡ å›¾ä¹¦å•ä»·  
+		select @Book_price = Book_out_price  from Book where @Book_id = Book_id
+		select @Supplier_id = Orderform.Supplier_id from Book,Order_detail,Orderform where Book.Book_id = Order_detail.Book_id and Order_detail.Orderform_id = Orderform.Orderform_id --æŸ¥è¯¢ä¾›åº”å•†å·
+		set @Pay_total = @Book_price * @Book_num --è®¡ç®—æ€»é‡‘é¢
+		--select   from Book where @Book_id = Book_id
+		set @time = getdate()--è·å–å½“å‰æ—¶é—´
+		insert into Order_detail values(@Orderform_id, @Book_num, @Book_id, @Pay_total)--æ›´æ–°è®¢å•æ˜ç»†è¡¨
+		update Book set Book_stock += @Book_num where @Book_id = Book_id  --æ›´æ–°å›¾ä¹¦åº“
+		insert into Orderform values(@Orderform_id, @time,null,@Supplier_id,@Book_num)--æ›´æ–°è®¢å•
+	end
+ ---æµ‹è¯•ä»£ç 
+ /*
+ begin tran
+ exec  Supply_ExistBook 'GY10001',5,'BK10001'
+ SELECT * FROM Order_detail
+ SELECT * FROM BOOK
+ select * from Orderform
+ ROLLBACK
+ */ 
+ 
+ create proc Supply_NonExistentBook--ä¾›åº”ä¸å­˜åœ¨çš„ä¹¦å­˜å‚¨è¿‡ç¨‹
+	@Orderform_id varchar(20),--è®¢å•å·
+	@Book_id varchar(20),--å›¾ä¹¦å·
+	@Book_name varchar(20),--ä¹¦å
+	@Book_in_price float,--è¿›ä»·
+	@Book_out_price float,--å”®ä»·
+	@Supplier_name varchar(20),--å‡ºç‰ˆå•†
+	@Supplier_id varchar(20),--ä¾›åº”å•†å·
+	--Book_storage_time datetime,--å›¾ä¹¦å…¥åº“æ—¶é—´
+	@Book_stock int--åº“å­˜/è¿›è´§æ•°é‡
+as
+	begin
+	declare @Book_storage_time datetime, @Pay_total float --å›¾ä¹¦å…¥åº“æ—¶é—´,è¿›ä»·ç»¼åˆ
+	set @Book_storage_time = GETDATE()
+	
+	set @Pay_total = @Book_in_price * @Book_stock
+	exec add_book_message @Book_id, @Book_in_price, @Book_out_price, @Book_name, @Supplier_name, @Book_storage_time,@Book_stock
+	exec add_Orderform  @Orderform_id, @Book_storage_time, null, @Supplier_id, @Book_stock
+	exec add_Order_detail @Orderform_id, @Book_stock, @Book_id, @Pay_total
+	end
+ 
