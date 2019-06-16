@@ -1,0 +1,305 @@
+package Frame;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.FlowLayout;
+import java.awt.CardLayout;
+
+public class JinHuo extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTable table;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTable table_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JinHuo frame = new JinHuo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	int num=0;
+	/**
+	 * Create the frame.
+	 */
+	public JinHuo() {
+		setTitle("\u4E66\u5E97\u9500\u552E\u7BA1\u7406\u7CFB\u7EDF");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 800, 600);
+		setLocationRelativeTo(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel label = new JLabel("\u8FDB\u8D27");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(346, 13, 93, 34);
+		contentPane.add(label);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(187, 39, 454, 34);
+		contentPane.add(panel);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		JButton button_1 = new JButton("\u8FDB\u8D27\u5DF2\u6709\u56FE\u4E66");
+		panel.add(button_1);
+
+		JButton button_2 = new JButton("\u8FDB\u8D27\u65B0\u7684\u56FE\u4E66");
+		panel.add(button_2);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(0, 81, 790, 472);
+		contentPane.add(panel_3);
+		panel_3.setLayout(new CardLayout(0, 0));
+
+		JPanel panel_2 = new JPanel();
+		panel_3.add(panel_2, "name_594357503791412");
+		panel_2.setLayout(null);
+
+		JLabel label_4 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setBounds(24, 31, 72, 18);
+		panel_2.add(label_4);
+
+		textField_3 = new JTextField();
+		textField_3.setBounds(110, 28, 86, 24);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
+
+		JLabel label_5 = new JLabel("\u56FE\u4E66\u53F7\uFF1A");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setBounds(228, 31, 72, 18);
+		panel_2.add(label_5);
+
+		textField_4 = new JTextField();
+		textField_4.setBounds(295, 28, 86, 24);
+		panel_2.add(textField_4);
+		textField_4.setColumns(10);
+
+		JLabel label_6 = new JLabel("\u4E66\u540D\uFF1A");
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setBounds(397, 31, 72, 18);
+		panel_2.add(label_6);
+
+		textField_5 = new JTextField();
+		textField_5.setBounds(465, 28, 86, 24);
+		panel_2.add(textField_5);
+		textField_5.setColumns(10);
+
+		JLabel label_7 = new JLabel("\u8FDB\u4EF7\uFF1A");
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setBounds(561, 31, 51, 18);
+		panel_2.add(label_7);
+
+		textField_7 = new JTextField();
+		textField_7.setBounds(603, 28, 39, 24);
+		panel_2.add(textField_7);
+		textField_7.setColumns(10);
+
+		JLabel label_9 = new JLabel("\u51FA\u7248\u5546\uFF1A");
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		label_9.setBounds(24, 62, 72, 18);
+		panel_2.add(label_9);
+
+		textField_8 = new JTextField();
+		textField_8.setBounds(110, 59, 86, 24);
+		panel_2.add(textField_8);
+		textField_8.setColumns(10);
+
+		JLabel label_10 = new JLabel("\u4F9B\u5E94\u5546\u53F7\uFF1A");
+		label_10.setHorizontalAlignment(SwingConstants.CENTER);
+		label_10.setBounds(210, 62, 86, 18);
+		panel_2.add(label_10);
+
+		textField_9 = new JTextField();
+		textField_9.setBounds(295, 59, 86, 24);
+		panel_2.add(textField_9);
+		textField_9.setColumns(10);
+
+		JLabel label_11 = new JLabel("\u552E\u4EF7\uFF1A");
+		label_11.setHorizontalAlignment(SwingConstants.CENTER);
+		label_11.setBounds(647, 31, 56, 18);
+		panel_2.add(label_11);
+
+		textField_10 = new JTextField();
+		textField_10.setBounds(704, 28, 39, 24);
+		panel_2.add(textField_10);
+		textField_10.setColumns(10);
+
+		JLabel label_12 = new JLabel("\u4F9B\u5E94\u91CF\uFF1A");
+		label_12.setHorizontalAlignment(SwingConstants.CENTER);
+		label_12.setBounds(397, 62, 72, 18);
+		panel_2.add(label_12);
+
+		textField_11 = new JTextField();
+		textField_11.setBounds(465, 59, 39, 24);
+		panel_2.add(textField_11);
+		textField_11.setColumns(10);
+
+		JButton button_4 = new JButton("\u6DFB\u52A0\u8BA2\u5355");
+		button_4.setBounds(630, 58, 113, 27);
+		panel_2.add(button_4);
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(14, 130, 762, 290);
+		panel_2.add(scrollPane_1);
+
+		table_1 = new JTable();
+		scrollPane_1.setViewportView(table_1);
+
+		JPanel panel_1 = new JPanel();
+		panel_3.add(panel_1, "name_594726193135799");
+		panel_1.setLayout(null);
+
+		JLabel label_1 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");
+		label_1.setBounds(140, 27, 72, 18);
+		panel_1.add(label_1);
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+
+		textField = new JTextField();
+		textField.setBounds(243, 24, 282, 24);
+		panel_1.add(textField);
+		textField.setColumns(10);
+
+		JLabel label_2 = new JLabel("\u56FE\u4E66\u53F7\uFF1A");
+		label_2.setBounds(140, 59, 72, 25);
+		panel_1.add(label_2);
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel label_3 = new JLabel("\u6570\u91CF\uFF1A");
+		label_3.setBounds(140, 97, 72, 18);
+		panel_1.add(label_3);
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+
+		textField_1 = new JTextField();
+		textField_1.setBounds(243, 61, 282, 24);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+
+		textField_2 = new JTextField();
+		textField_2.setBounds(243, 94, 86, 24);
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+
+		JButton button_3 = new JButton("\u6DFB\u52A0\u8BA2\u5355");
+		button_3.setBounds(412, 93, 113, 27);
+		panel_1.add(button_3);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(14, 130, 762, 290);
+		panel_1.add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
+		panel_1.setVisible(true);
+		panel_2.setVisible(false);
+
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panel_1.setVisible(true);
+				panel_2.setVisible(false);
+			}
+		});
+
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panel_1.setVisible(false);
+				panel_2.setVisible(true);
+			}
+		});
+
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";
+
+				try {
+					Class.forName(jdbcDriver);// 加载数据库驱动
+					String user = "sa";// 数据库用户名
+					String password = "123456";// 数据库密码
+					Connection connection = DriverManager.getConnection(connectDB, user, password);// 建立数据库连接，获得连接对象
+					PreparedStatement pstmt = connection.prepareStatement("{call dbo.Supply_ExistentBook(?,?,?)}");
+				
+					pstmt.setString(1, textField.getText());
+					pstmt.setString(3, textField_1.getText());
+					pstmt.setInt(2, Integer.parseInt(textField_2.getText()));
+					pstmt.execute();
+					
+					int count = 0;
+					Statement statement = connection.createStatement();
+					ResultSet rs = statement.executeQuery("SELECT * FROM Order_detail ");
+					
+					while (rs.next()) {
+						count++;
+					}
+						System.out.println(count);
+					//num+=count;
+					Object[][] infomation = new Object[count][4];
+					count = 0;
+					rs = statement.executeQuery("SELECT * FROM Order_detail ");
+					while (rs.next()) {
+						
+						infomation[count][0] = String.valueOf(rs.getString("Orderform_id"));
+						infomation[count][1] = String.valueOf(rs.getString("Book_num"));
+						infomation[count][2] = String.valueOf(rs.getString("Book_id"));
+						infomation[count][3] = String.valueOf(rs.getString("Pay_total"));
+						count++;
+
+					}
+					String[] title = { "订单号", "数量", "图书号","小计" };
+					table = new JTable(infomation, title);
+					table.setBounds(41, 122, 843, 372);
+					scrollPane.setViewportView(table);/// 加表格
+					
+					//rs.close();
+					//pstmt.close();
+				} catch (Exception e1) {
+					System.out.println("错误");
+				}
+			}
+		});
+
+	}
+}
