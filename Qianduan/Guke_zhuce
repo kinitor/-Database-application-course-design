@@ -1,13 +1,32 @@
 package One;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Font;
+import javax.swing.JOptionPane;
 
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 public class Gukezhuce {
 
 	private JFrame frame;
@@ -17,24 +36,13 @@ public class Gukezhuce {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gukezhuce window = new Gukezhuce();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
 	public Gukezhuce() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -44,7 +52,7 @@ public class Gukezhuce {
 		frame = new JFrame();
 		frame.setTitle("\u987E\u5BA2\u6CE8\u518C");
 		frame.setBounds(200, 300, 458, 326);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("\u987E\u5BA2\u53F7\uFF1A");//顾客号标题
@@ -70,9 +78,39 @@ public class Gukezhuce {
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("\u6CE8\u518C");//注册键按钮
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";// 声明数据库DRMSDB的URL
+				/// 上面两句驱动语句，在
+				try {
+					Class.forName(jdbcDriver);// 加载数据库驱动
+					String user = "sa";// 数据库用户名
+					String password = "zxc134679852";// 数据库密码
+					Connection connection = DriverManager.getConnection(connectDB, user, password);// 建立数据库连接，获得连接对象
+
+					Statement statement = connection.createStatement();// 创建一个Statement对象
+
+					String name1 = textField.getText();
+					String lianxi = textField_1.getText();
+					statement.executeUpdate("insert into Customer values('"+name1+"', 0, 0, '"+lianxi+"')");// 执行注册语句
+					JOptionPane.showMessageDialog(null,"注册成功");
+				} 
+				catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "注册失败");
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 24));
 		btnNewButton.setBounds(115, 200, 173, 50);
 		frame.getContentPane().add(btnNewButton);
 	}
 
 }
+
