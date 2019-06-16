@@ -4,15 +4,37 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextArea;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+
+import java.sql.ResultSet;
+
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 public class Gengxin {
 
 	private JFrame frame;
@@ -21,24 +43,14 @@ public class Gengxin {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gengxin window = new Gengxin();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 */
 	public Gengxin() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -74,24 +86,51 @@ public class Gengxin {
 		frame.getContentPane().add(label_1);//添加顾客号标题进窗口
 		
 		JButton btnNewButton = new JButton("\u5347\u7EA7");//升级键按钮
-		btnNewButton.setBackground(Color.BLUE);
-		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";// 声明数据库DRMSDB的URL
+				/// 上面两句驱动语句，在
+				try {
+					Class.forName(jdbcDriver);// 加载数据库驱动
+					String user = "sa";// 数据库用户名
+					String password = "zxc134679852";// 数据库密码
+					Connection connection = DriverManager.getConnection(connectDB, user, password);// 建立数据库连接，获得连接对象
+
+					Statement statement = connection.createStatement();// 创建一个Statement对象
+
+					ResultSet rs = statement
+							.executeQuery("SELECT * FROM Orderform WHERE Customer_id = '" + textField.getText() + "'");// 查询订单记录语句
+					int count = 0;
+					while (rs.next()) {
+						count++;//记录该顾客的订单总次数
+					}
+					if(count>=6)//如果该顾客的订单总次数大于6 则可以升级成会员
+					{
+						statement.executeUpdate("update Customer set Customer_vip= 1 where Customer_id = '" + textField.getText() + "'");// 执行升级语句
+						
+						JOptionPane.showMessageDialog(null,"注册成功");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "升级失败");
+					}
+				} 
+				catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "程序错误");
+				}
+			}
+		});
+		//btnNewButton.setBackground(Color.BLUE);
+		//btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 27));
 		btnNewButton.setBounds(414, 100, 98, 38);
 		frame.getContentPane().add(btnNewButton);
-		
-		JTextArea textArea = new JTextArea();//显示会员号升级结果的文本区
-		textArea.setEditable(false);
-		textArea.setBackground(Color.GRAY);
-		textArea.setDisabledTextColor(Color.BLACK);
-		textArea.setBounds(163, 223, 333, 121);
-		frame.getContentPane().add(textArea);
-		
-		JLabel label_2 = new JLabel("\u7ED3\u679C\u660E\u793A");//显示结果的标题
-		label_2.setBackground(Color.WHITE);
-		label_2.setFont(new Font("宋体", Font.PLAIN, 21));
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(272, 182, 107, 38);
-		frame.getContentPane().add(label_2);
 	}
 }
