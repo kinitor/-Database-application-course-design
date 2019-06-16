@@ -1,5 +1,4 @@
-package keshe;
-
+package Frame;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -29,24 +28,22 @@ import javax.swing.JScrollPane;
 public class Chaxun extends JFrame {
 
 	private JPanel contentPane;
+	private JScrollPane scrollPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTable table;
+	 int num = 0;
 
 	/**
 	 * Create the frame.
 	 */
 	public Chaxun() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
-		initialize();
-	}
-
-	private void initialize() {
 		setTitle("\u4E66\u5E97\u9500\u552E\u7BA1\u7406\u7CFB\u7EDF");
 		setBounds(100, 100, 800, 600);
-		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,56 +61,56 @@ public class Chaxun extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 
-		JLabel label_1 = new JLabel("\u4E66\u7C4D\u53F7\uFF1A");
-		label_1.setBounds(230, 15, 60, 25);
+		JLabel label_1 = new JLabel("\u4E66\u7C4D\u53F7\uFF1A");///书籍
+		label_1.setBounds(37, 15, 60, 25);
 		panel_1.add(label_1);
 
 		textField = new JTextField();
-		textField.setBounds(310, 15, 120, 25);
+		textField.setBounds(114, 15, 120, 25);
 		panel_1.add(textField);
 		textField.setColumns(10);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 
-		JLabel label_2 = new JLabel("\u987E\u5BA2\u53F7\uFF1A");
-		label_2.setBounds(230, 15, 60, 25);
+		JLabel label_2 = new JLabel("\u987E\u5BA2\u53F7\uFF1A");///顾客号
+		label_2.setBounds(37, 15, 60, 25);
 		panel_2.add(label_2);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(310, 15, 120, 25);
+		textField_1.setBounds(114, 15, 120, 25);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBounds(0, 254, 650, 120);
 		panel_4.setLayout(null);
-
-		JLabel label_3 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");
-		label_3.setBounds(230, 15, 60, 25);
+		
+		JLabel label_3 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");///订单
+		label_3.setBounds(37, 15, 60, 25);
 		panel_4.add(label_3);
-
+		
 		textField_2 = new JTextField();
-		textField_2.setBounds(310, 15, 120, 25);
+		textField_2.setBounds(114, 15, 120, 25);
 		panel_4.add(textField_2);
 		textField_2.setColumns(10);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(0, 254, 650, 120);
 		panel_5.setLayout(null);
-
-		JLabel label_4 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");
-		label_4.setBounds(230, 15, 60, 25);
+		
+		JLabel label_4 = new JLabel("\u8BA2\u5355\u53F7\uFF1A");///订单明细
+		label_4.setBounds(37, 15, 60, 25);
 		panel_5.add(label_4);
-
+		
 		textField_3 = new JTextField();
-		textField_3.setBounds(310, 15, 120, 25);
+		textField_3.setBounds(114, 15, 120, 25);
 		panel_5.add(textField_3);
 		textField_3.setColumns(10);
-
+		
 		JButton btnNewButton = new JButton("\u4E66\u7C4D");
 		btnNewButton.setBounds(186, 5, 63, 27);
-
+		
 		panel.setLayout(null);
 		panel.add(btnNewButton);
 
@@ -129,60 +126,6 @@ public class Chaxun extends JFrame {
 		button_3.setBounds(542, 5, 93, 27);
 		panel.add(button_3);
 
-		JButton button = new JButton("\u67E5\u8BE2");
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(50, 160, 660, 350);
-		contentPane.add(scrollPane);
-
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-				String connectDB = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";// 声明数据库DRMSDB的URL
-				/// 上面两句驱动语句，在
-				try {
-					Class.forName(jdbcDriver);// 加载数据库驱动
-					String user = "sa";// 数据库用户名
-					String password = "jx3171911220";// 数据库密码
-					Connection connection = DriverManager.getConnection(connectDB, user, password);// 建立数据库连接，获得连接对象
-
-					Statement statement = connection.createStatement();// 创建一个Statement对象
-
-					ResultSet rs = statement
-							.executeQuery("SELECT * FROM customer WHERE Customer_id = '" + textField_1.getText() + "'");// 执行查询语句
-					int count = 0;
-					while (rs.next()) {
-						count++;
-					}
-
-					rs = statement.executeQuery(
-							"SELECT * FROM customer WHERE Customer_id =  '" + textField_1.getText() + "'");
-					Object[][] infomation = new Object[count][4];
-					count = 0;
-					while (rs.next()) {
-
-						infomation[count][0] = String.valueOf(rs.getString("Customer_id"));
-						infomation[count][1] = String.valueOf(rs.getString("Customer_vip"));
-						infomation[count][2] = String.valueOf(rs.getString("Customer_vip_money"));
-						infomation[count][3] = String.valueOf(rs.getString("Customer_tel"));
-						// System.out.println(rs.getString("Customer_id")+"\t"+rs.getString("Customer_vip")+"\t"+rs.getString("Customer_vip_money")+"\t"+rs.getString("Customer_tel"));
-						count++;
-						// System.out.println(count);
-					}
-					String[] title = { "顾客号", "是否会员", "会员卡金额", "联系电话" };
-					table = new JTable(infomation, title);
-					table.setBounds(41, 122, 843, 372);
-					scrollPane.setViewportView(table);/// 加表格
-				} catch (Exception e1) {
-				}
-			}
-		});
-
-		button.setBounds(500, 116, 113, 27);
-		contentPane.add(button);
-		button.setFont(new Font("宋体", Font.BOLD, 20));
-
 		panel_1.setVisible(true);
 
 		JPanel panel_3 = new JPanel();
@@ -190,22 +133,215 @@ public class Chaxun extends JFrame {
 		contentPane.add(panel_3);
 		panel_3.setLayout(new CardLayout(0, 0));
 		panel_3.add(panel_1);
+		
+		JButton button = new JButton("\u67E5\u8BE2");///查询书籍号
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+		        ///上面两句驱动语句，在
+		        try
+		        {
+		            Class.forName(jdbcDriver);//加载数据库驱动
+		            String user="sa";//数据库用户名
+		            String password="123456";//数据库密码
+		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+		            Statement statement=connection.createStatement();//创建一个Statement对象
+		            if()
+		            ResultSet rs=statement.executeQuery("SELECT * FROM Book");//执行查询语句
+		             int count = 0;
+		            while(rs.next()) {
+		            	count++;
+		            }
+		           
+		             rs = statement.executeQuery("SELECT * FROM Book");
+		            Object[][] infomation = new Object[count][7];
+		            count = 0;
+		            while(rs.next())
+		            {
+		            
+		            	   infomation[count][0] = String.valueOf(rs.getString("Book_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Book_in_price"));
+		                   infomation[count][2] = String.valueOf(rs.getString("Book_out_price"));
+		                   infomation[count][3] = String.valueOf(rs.getString("Book_name"));
+		                   infomation[count][4] = String.valueOf(rs.getString("Supplier_name"));
+		                   infomation[count][5] = String.valueOf(rs.getString("Book_storage_time"));
+		                   infomation[count][6] = String.valueOf(rs.getString("Book_stock")); 
+		            	count++;
+		            }
+		            num ++ ;
+		            String[] title = {"图书号","进价","图书售价","书名","供应商名字","图书入库时间","库存"};
+		            table = new JTable(infomation,title);
+		            table.setBounds(41, 122, 843, 372);
+		            scrollPane.setViewportView(table);///加表格
+		        }
+		        catch(Exception e1)
+		        {
+		        	
+		        }
+			}
+				
+		
+		});
+		button.setBounds(282, 14, 113, 27);
+		panel_1.add(button);
 		panel_3.add(panel_2);
-		panel_3.add(panel_4);
-		panel_3.add(panel_5);
-
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		
+		JButton button_4 = new JButton("\u67E5\u8BE2");//查询顾客号
 		button_4.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new Front();
-				setVisible(false);
+			public void mouseClicked(MouseEvent e) {
+				String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+		        ///上面两句驱动语句，在
+		        try
+		        {
+		            Class.forName(jdbcDriver);//加载数据库驱动
+		            String user="sa";//数据库用户名
+		            String password="123456";//数据库密码
+		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+		           
+		            Statement statement=connection.createStatement();//创建一个Statement对象
+		           
+		            ResultSet rs=statement.executeQuery("SELECT * FROM customer");//执行查询语句
+		             int count = 0;
+		            while(rs.next()) {
+		            	count++;
+		            }
+		          //  
+		             rs = statement.executeQuery("SELECT * FROM customer");
+		            Object[][] infomation = new Object[count][4];
+		            count = 0;
+		            while(rs.next())
+		            {
+		            	
+		            	   infomation[count][0] = String.valueOf(rs.getString("Customer_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Customer_vip"));
+		                   infomation[count][2] = String.valueOf(rs.getString("Customer_vip_money"));
+		                   infomation[count][3] = String.valueOf(rs.getString("Customer_tel"));
+		            	     count++;
+		      
+		            }
+		            String[] title = {"顾客号","是否会员","会员卡金额","联系电话"};
+		            table = new JTable(infomation,title);
+		            table.setBounds(41, 122, 843, 372);
+		            
+		            scrollPane.setViewportView(table);///加表格
+		        }
+		        catch(Exception e1)
+		        {
+		        	
+		        }
 			}
 		});
-		button_4.setFont(new Font("宋体", Font.BOLD, 20));
-		button_4.setBounds(655, 116, 113, 27);
-		contentPane.add(button_4);
-
+		button_4.setBounds(282, 14, 113, 27);
+		panel_2.add(button_4);
+		panel_3.add(panel_4);
+		
+		JButton button_5 = new JButton("\u67E5\u8BE2");
+		button_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+				String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+		        ///上面两句驱动语句，在
+		        try
+		        {
+		            Class.forName(jdbcDriver);//加载数据库驱动
+		            String user="sa";//数据库用户名
+		            String password="123456";//数据库密码
+		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+		            Statement statement=connection.createStatement();//创建一个Statement对象
+		            ResultSet rs=statement.executeQuery("SELECT * FROM Sell_record");//执行查询语句
+		             int count = 0;
+		            while(rs.next()) {
+		            	count++;
+		            }
+		          //  
+		             rs = statement.executeQuery("SELECT * FROM Sell_record");
+		            Object[][] infomation = new Object[count][2];
+		            count = 0;
+		            while(rs.next())
+		            {
+		            
+		            	   infomation[count][0] = String.valueOf(rs.getString("Orderform_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Book_id"));
+		            	count++;
+		            }
+		            String[] title = {"订单号","图书号"};
+		            table = new JTable(infomation,title);
+		            table.setBounds(41, 122, 843, 372);
+		            scrollPane.setViewportView(table);///加表格
+		        }
+		        catch(Exception e1)
+		        {
+		        	
+		        }
+			}
+		});
+		button_5.setBounds(282, 14, 113, 27);
+		panel_4.add(button_5);
+		panel_3.add(panel_5);
+		
+		JButton button_6 = new JButton("\u67E5\u8BE2");
+		button_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				String jdbcDriver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		        String connectDB="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=BRMSDB";//声明数据库DRMSDB的URL
+		        ///上面两句驱动语句，在
+		        try
+		        {
+		            Class.forName(jdbcDriver);//加载数据库驱动
+		            String user="sa";//数据库用户名
+		            String password="123456";//数据库密码
+		            Connection connection=DriverManager.getConnection(connectDB,user,password);//建立数据库连接，获得连接对象
+		            Statement statement=connection.createStatement();//创建一个Statement对象
+		            ResultSet rs=statement.executeQuery("SELECT * FROM Pay_message");//执行查询语句
+		             int count = 0;
+		            while(rs.next()) {
+		            	count++;
+		            }
+		          //  
+		             rs = statement.executeQuery("SELECT * FROM Pay_message");
+		            Object[][] infomation = new Object[count][3];
+		            count = 0;
+		            while(rs.next())
+		            {
+		            
+		            	   infomation[count][0] = String.valueOf(rs.getString("Orderform_id"));
+		            	   infomation[count][1] = String.valueOf(rs.getString("Pay_money"));
+		                   infomation[count][2] = String.valueOf(rs.getString("Pay_mode"));
+		                  
+		            	count++;
+		            }
+		            String[] title = {"订单号","支付总额","支付方式"};
+		            table = new JTable(infomation,title);
+		            table.setBounds(41, 122, 843, 372);
+		            scrollPane.setViewportView(table);///加表格
+		        }
+		        catch(Exception e1)
+		        {
+		        	
+		        }
+				
+			}
+		});
+		button_6.setBounds(282, 14, 113, 27);
+		panel_5.add(button_6);
+		
+		 scrollPane = new JScrollPane();
+		scrollPane.setBounds(50, 160, 660, 350);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+				
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -242,6 +378,7 @@ public class Chaxun extends JFrame {
 				panel_5.setVisible(true);
 			}
 		});
+
 
 	}
 }
